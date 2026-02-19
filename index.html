@@ -933,21 +933,40 @@
 })();
 
 // ===== FORM HANDLER =====
-function handleSubmit(e){
+async function handleSubmit(e){
     e.preventDefault();
-    var form=document.getElementById('contactForm');
-    var msg=document.getElementById('formMsg');
-    // Basic validation
-    var email=form.querySelector('#email').value;
-    if(!email||!email.includes('@')){
-        msg.style.display='block';msg.style.color='#ff3b30';msg.textContent='Please enter a valid email address.';return;
-    }
-    // Show success (replace with your actual form handler, e.g. WordPress form plugin)
-    msg.style.display='block';msg.style.color='#30d158';msg.textContent='Thank you! We\'ll be in touch soon.';
-    form.reset();
-    setTimeout(function(){msg.style.display='none'},5000);
-}
+    var form = document.getElementById('contactForm');
+    var msg = document.getElementById('formMsg');
+    var btn = form.querySelector('.sub-btn');
 
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+        var response = await fetch('https://formspree.io/f/mbdaadwy', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if(response.ok){
+            msg.style.display = 'block';
+            msg.style.color = '#30d158';
+            msg.textContent = "Thank you! We'll be in touch soon.";
+            form.reset();
+            setTimeout(function(){ msg.style.display = 'none'; }, 5000);
+        } else {
+            throw new Error('Form error');
+        }
+    } catch(err) {
+        msg.style.display = 'block';
+        msg.style.color = '#ff3b30';
+        msg.textContent = 'Something went wrong. Please try again.';
+    }
+
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+}
 // ===== NAV =====
 function go(id){
     var pages=document.querySelectorAll('.page');
