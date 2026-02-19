@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurtz Donut | Made You Look Marketing</title>
+    <meta name="description" content="Hurtz Donut is a full-service digital marketing agency specializing in SEO, website design, professional videography, social media management, inventory management, and ad space management.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"ProfessionalService","name":"Hurtz Donut","alternateName":"Made You Look Marketing","description":"Full-service digital marketing agency.","url":"https://hurtzdonut.com","knowsAbout":["SEO","Website Design","Videography","Social Media Management","Inventory Management","Ad Space Management"],"serviceType":["Search Engine Optimization","Web Design","Video Production","Social Media Marketing","Inventory Management Systems","Digital Advertising Management"]}
+    </script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{font-family:'DM Sans',sans-serif;color:#1d1d1f;background:#000;overflow-x:hidden;line-height:1.6}
+        a{text-decoration:none;color:inherit}
+        button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+        /* ===== WATER RIPPLE CANVAS (WebGL) ===== */
+        .water-canvas{
+            position:absolute;inset:0;z-index:1;
+            pointer-events:none;
+        }
+
+        /* ===== BLOB CONTAINER ===== */
+        .blob-container{position:absolute;inset:0;overflow:hidden;z-index:0}
+        .blob{
+            position:absolute;border-radius:50%;
+            filter:blur(80px);
+            will-change:transform;
+            animation:blob-move 20s ease-in-out infinite alternate;
+            transition:margin 0.15s cubic-bezier(0.25,0.1,0.25,1);
+        }
+        .blob-1{width:600px;height:600px;background:rgba(0,113,227,0.35);top:-10%;left:-5%;animation-duration:18s}
+        .blob-2{width:500px;height:500px;background:rgba(100,172,255,0.3);top:30%;right:-8%;animation-duration:22s;animation-delay:-5s}
+        .blob-3{width:550px;height:550px;background:rgba(0,85,179,0.28);bottom:-10%;left:30%;animation-duration:25s;animation-delay:-10s}
+        .blob-4{width:450px;height:450px;background:rgba(0,200,255,0.22);top:50%;left:50%;animation-duration:20s;animation-delay:-3s}
+        .blob-5{width:400px;height:400px;background:rgba(80,140,255,0.25);top:10%;right:20%;animation-duration:24s;animation-delay:-8s}
+
+        @keyframes blob-move{
+            0%{transform:translate(0,0) scale(1)}
+            20%{transform:translate(80px,-60px) scale(1.1)}
+            40%{transform:translate(-40px,80px) scale(0.95)}
+            60%{transform:translate(60px,40px) scale(1.08)}
+            80%{transform:translate(-80px,-30px) scale(1.02)}
+            100%{transform:translate(40px,60px) scale(0.98)}
+        }
+
+        /* Videography blobs */
+        .blob-vid-1{width:600px;height:600px;background:rgba(227,0,113,0.3);top:-5%;left:-5%;animation-duration:19s}
+        .blob-vid-2{width:500px;height:500px;background:rgba(0,113,227,0.28);bottom:0;right:-5%;animation-duration:23s;animation-delay:-6s}
+        .blob-vid-3{width:450px;height:450px;background:rgba(255,100,50,0.22);top:40%;left:40%;animation-duration:21s;animation-delay:-3s}
+
+        /* Web design blobs */
+        .blob-web-1{width:600px;height:600px;background:rgba(0,200,150,0.28);top:-10%;right:-5%;animation-duration:20s}
+        .blob-web-2{width:500px;height:500px;background:rgba(0,113,227,0.3);bottom:-5%;left:-5%;animation-duration:24s;animation-delay:-7s}
+        .blob-web-3{width:450px;height:450px;background:rgba(100,172,255,0.22);top:30%;left:30%;animation-duration:18s;animation-delay:-4s}
+
+        /* Social blobs */
+        .blob-soc-1{width:600px;height:600px;background:rgba(131,58,180,0.32);top:-5%;left:10%;animation-duration:21s}
+        .blob-soc-2{width:500px;height:500px;background:rgba(253,29,29,0.22);bottom:-5%;right:0;animation-duration:19s;animation-delay:-5s}
+        .blob-soc-3{width:450px;height:450px;background:rgba(252,176,69,0.22);top:50%;right:30%;animation-duration:25s;animation-delay:-9s}
+
+        /* SEO blobs */
+        .blob-seo-1{width:600px;height:600px;background:rgba(0,113,227,0.35);top:-10%;left:-5%;animation-duration:22s}
+        .blob-seo-2{width:500px;height:500px;background:rgba(48,209,88,0.22);bottom:0;right:0;animation-duration:20s;animation-delay:-4s}
+        .blob-seo-3{width:450px;height:450px;background:rgba(100,172,255,0.25);top:40%;right:20%;animation-duration:24s;animation-delay:-8s}
+
+        /* Ads blobs */
+        .blob-ad-1{width:600px;height:600px;background:rgba(255,55,95,0.25);top:-5%;right:-5%;animation-duration:19s}
+        .blob-ad-2{width:500px;height:500px;background:rgba(0,113,227,0.28);bottom:-5%;left:0;animation-duration:23s;animation-delay:-6s}
+        .blob-ad-3{width:450px;height:450px;background:rgba(255,159,10,0.22);top:30%;left:40%;animation-duration:21s;animation-delay:-3s}
+
+        /* Floating particles */
+        .particles{position:absolute;inset:0;overflow:hidden;z-index:0}
+        .dot{
+            position:absolute;border-radius:50%;
+            background:rgba(100,172,255,0.6);
+            animation:dot-rise linear infinite;
+        }
+        @keyframes dot-rise{
+            0%{transform:translateY(0) scale(0);opacity:0}
+            10%{opacity:0.7}
+            90%{opacity:0.7}
+            100%{transform:translateY(-100vh) scale(1);opacity:0}
+        }
+
+        /* Grid overlay */
+        .grid-overlay{
+            position:absolute;inset:0;z-index:0;
+            background-image:
+                linear-gradient(rgba(0,113,227,0.04) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(0,113,227,0.04) 1px,transparent 1px);
+            background-size:60px 60px;
+            animation:grid-drift 40s linear infinite;
+        }
+        @keyframes grid-drift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
+
+        /* Dark overlay for readability */
+        .dark-overlay{
+            position:absolute;inset:0;z-index:2;
+            background:linear-gradient(180deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.2) 40%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0.85) 100%);
+        }
+
+        /* ===== VIDEO BACKGROUND ===== */
+        .video-bg{
+            position:absolute;inset:0;z-index:0;overflow:hidden;
+        }
+        .video-bg video{
+            position:absolute;top:50%;left:50%;
+            min-width:100%;min-height:100%;
+            width:auto;height:auto;
+            transform:translate(-50%,-50%);
+            object-fit:cover;
+            opacity:0;
+            transition:opacity 1.5s ease;
+        }
+        .video-bg video.playing{opacity:1}
+        /* Fallback gradient always visible behind video */
+        .video-bg-fallback{
+            position:absolute;inset:0;
+            background:linear-gradient(135deg,#0a0a0a 0%,#0d1b2a 50%,#0a0a0a 100%);
+        }
+
+        /* Cursor glow */
+        .cursor-glow{
+            position:fixed;
+            width:500px;height:500px;
+            border-radius:50%;
+            background:radial-gradient(circle,rgba(0,113,227,0.12) 0%,rgba(0,113,227,0.04) 35%,transparent 70%);
+            pointer-events:none;
+            z-index:3;
+            transform:translate(-50%,-50%);
+            transition:opacity 0.3s;
+            mix-blend-mode:screen;
+        }
+        .cursor-glow.hidden{opacity:0}
+
+        /* ===== NAV ===== */
+        .nav-wrap{
+            position:fixed;top:0;left:0;right:0;z-index:1000;
+            backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+            background:rgba(0,0,0,0.72);border-bottom:1px solid rgba(255,255,255,0.08);height:56px;transition:background 0.3s;
+        }
+        .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;letter-spacing:-0.5px;cursor:pointer}
+        .nav-logo b{color:#0071e3}
+        .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+        .nav-links a{color:rgba(255,255,255,0.8);font-size:0.82rem;font-weight:500;transition:color 0.2s;cursor:pointer;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:#fff}
+        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:#0071e3;transition:width 0.3s}
+        .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+        .nav-cta{background:#0071e3!important;color:#fff!important;padding:8px 20px!important;border-radius:980px;font-weight:600!important;transition:all 0.2s}
+        .nav-cta:hover{background:#0055b3!important;transform:scale(1.04)}
+        .nav-cta::after{display:none!important}
+        .hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+        .hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:0.3s}
+        .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.open span:nth-child(2){opacity:0}
+        .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-nav{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(0,0,0,0.96);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+        .mobile-nav.open{display:flex}
+        .mobile-nav a{color:#fff;font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:600;cursor:pointer}
+
+        /* ===== PAGE SYSTEM ===== */
+        .page{display:none;min-height:100vh;position:relative}
+        .page.active{display:block}
+
+        /* ===== HERO ===== */
+        .hero{
+            min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+            text-align:center;padding:96px 24px 60px;position:relative;overflow:hidden;background:#000;
+        }
+        .hero-content{position:relative;z-index:4;max-width:900px}
+        .hero-badge{
+            display:inline-flex;align-items:center;gap:8px;
+            background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+            border-radius:980px;padding:6px 18px;font-size:0.78rem;
+            color:#64acff;font-weight:500;margin-bottom:28px;letter-spacing:0.5px;
+        }
+        .hero-badge .pulse{width:6px;height:6px;background:#30d158;border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+        .hero h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,6.5rem);line-height:1.02;letter-spacing:-3px;color:#fff;margin-bottom:8px}
+        .hero h1 b{color:#0071e3;font-weight:800}
+        .hero-tag{font-family:'Outfit',sans-serif;font-weight:300;font-size:clamp(1.1rem,2.5vw,1.6rem);color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px}
+        .hero-sub{font-size:clamp(1rem,1.8vw,1.2rem);color:rgba(255,255,255,0.55);max-width:560px;margin:0 auto 44px;line-height:1.7;font-weight:300}
+        .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+        .btn-p{display:inline-block;background:#0071e3;color:#fff;padding:14px 36px;border-radius:980px;font-weight:600;font-size:1rem;transition:all 0.25s;cursor:pointer}
+        .btn-p:hover{background:#0055b3;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,113,227,0.35)}
+        .btn-g{display:inline-block;background:rgba(255,255,255,0.06);color:#fff;padding:14px 36px;border-radius:980px;font-weight:600;font-size:1rem;border:1px solid rgba(255,255,255,0.15);transition:all 0.25s;cursor:pointer}
+        .btn-g:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3)}
+        .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;animation:float-h 2.5s ease-in-out infinite}
+        .scroll-mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,0.25);border-radius:14px;position:relative}
+        .scroll-mouse::after{content:'';width:3px;height:8px;background:rgba(255,255,255,0.4);border-radius:3px;position:absolute;top:6px;left:50%;transform:translateX(-50%);animation:sc-wheel 1.5s infinite}
+        @keyframes sc-wheel{0%{opacity:1;top:6px}100%{opacity:0;top:20px}}
+        @keyframes float-h{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+        /* ===== INNER HERO ===== */
+        .inner-hero{
+            min-height:70vh;display:flex;align-items:center;justify-content:center;
+            text-align:center;padding:136px 24px 80px;position:relative;overflow:hidden;background:#000;
+        }
+        .inner-hero-content{position:relative;z-index:4;max-width:750px}
+        .inner-hero h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,4.5rem);color:#fff;letter-spacing:-2px;line-height:1.05;margin-bottom:18px}
+        .inner-hero p{color:rgba(255,255,255,0.6);font-size:clamp(1rem,1.6vw,1.15rem);max-width:540px;margin:0 auto;line-height:1.7}
+
+        /* ===== SECTIONS ===== */
+        .sec{padding:clamp(80px,12vh,140px) 24px}
+        .sec-dark{background:#000}
+        .sec-light{background:#f5f5f7}
+        .container{max-width:1200px;margin:0 auto}
+        .label{font-size:0.78rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#0071e3;margin-bottom:12px}
+        .sec-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(2rem,4.5vw,3.5rem);color:#fff;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+        .sec-light .sec-title{color:#1d1d1f}
+        .sec-desc{color:#86868b;font-size:1.05rem;max-width:520px;line-height:1.7;margin-bottom:56px}
+
+        /* Services grid */
+        .s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .s-card{
+            background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+            border-radius:20px;padding:40px 32px;transition:all 0.4s;cursor:pointer;position:relative;overflow:hidden;
+        }
+        .s-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0071e3,#64acff);opacity:0;transition:opacity 0.3s}
+        .s-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(0,113,227,0.25);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+        .s-card:hover::before{opacity:1}
+        .c-icon{width:52px;height:52px;background:rgba(0,113,227,0.15);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:1.5rem}
+        .c-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:10px;letter-spacing:-0.5px}
+        .c-text{color:#86868b;font-size:0.92rem;line-height:1.65;margin-bottom:20px}
+        .c-link{color:#0071e3;font-weight:600;font-size:0.88rem}
+
+        /* Trust stats */
+        .trust-sec{padding:clamp(80px,12vh,140px) 24px;background:#f5f5f7}
+        .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+        .t-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:3.2rem;color:#0071e3;letter-spacing:-2px;line-height:1;margin-bottom:8px}
+        .t-label{font-size:0.9rem;color:#86868b;font-weight:500}
+
+        /* Feature rows */
+        .f-row{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .f-row.rev{direction:rtl}
+        .f-row.rev>*{direction:ltr}
+        .f-text h2{font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-1px;line-height:1.15;margin-bottom:18px}
+        .sec-dark .f-text h2{color:#fff}
+        .sec-light .f-text h2{color:#1d1d1f}
+        .f-text p{font-size:1rem;line-height:1.75;color:#86868b;margin-bottom:28px}
+        .f-vis{
+            border-radius:24px;aspect-ratio:4/3;position:relative;overflow:hidden;
+        }
+        .sec-dark .f-vis{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)}
+        .sec-light .f-vis{background:#fff;border:1px solid #e8e8ed;box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+        .f-vis-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3.5rem;z-index:2;filter:drop-shadow(0 4px 20px rgba(0,113,227,0.3))}
+
+        /* Process */
+        .process-steps{max-width:900px;margin:0 auto}
+        .p-step{display:grid;grid-template-columns:60px 1fr;gap:28px;padding:40px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .p-step:last-child{border-bottom:none}
+        .p-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:2.4rem;color:#0071e3;letter-spacing:-2px;line-height:1}
+        .p-step h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;margin-bottom:8px}
+        .p-step p{color:#86868b;font-size:0.95rem;line-height:1.7}
+
+        /* CTA */
+        .cta{padding:clamp(80px,12vh,140px) 24px;text-align:center;background:linear-gradient(180deg,#000 0%,#0a1628 50%,#000 100%);position:relative}
+        .cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(0,113,227,0.1) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+        .cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+        .cta-inner h2{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3rem);color:#fff;letter-spacing:-1.5px;margin-bottom:16px}
+        .cta-inner p{color:#86868b;font-size:1.05rem;margin-bottom:36px;line-height:1.7}
+
+        /* Contact */
+        .contact-sec{padding:clamp(80px,12vh,140px) 24px;background:#f5f5f7}
+        .contact-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+        .contact-info h2{font-family:'Outfit',sans-serif;font-weight:700;font-size:2.2rem;color:#1d1d1f;letter-spacing:-1px;margin-bottom:16px}
+        .contact-info p{color:#86868b;line-height:1.7;margin-bottom:28px}
+        .c-detail{display:flex;align-items:center;gap:12px;color:#1d1d1f;font-weight:500;margin-bottom:16px}
+        .c-detail svg{color:#0071e3;flex-shrink:0}
+        .c-form{display:flex;flex-direction:column;gap:16px}
+        .fg{display:flex;flex-direction:column;gap:6px}
+        .fg label{font-size:0.82rem;font-weight:600;color:#1d1d1f}
+        .fg input,.fg textarea,.fg select{padding:14px 18px;border:1px solid #e8e8ed;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.95rem;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;color:#1d1d1f}
+        .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:#0071e3;box-shadow:0 0 0 3px rgba(0,113,227,0.15)}
+        .fg textarea{min-height:120px;resize:vertical}
+        .f-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .sub-btn{background:#0071e3;color:#fff;padding:16px 36px;border-radius:12px;font-weight:600;font-size:1rem;transition:all 0.25s;margin-top:8px;cursor:pointer}
+        .sub-btn:hover{background:#0055b3;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,113,227,0.3)}
+
+        /* Check list */
+        .ck-list{list-style:none;display:grid;gap:14px}
+        .ck-list li{display:flex;align-items:flex-start;gap:12px;color:#86868b;font-size:0.95rem;line-height:1.6}
+        .ck{color:#0071e3;font-weight:700;flex-shrink:0}
+
+        /* Footer */
+        footer{background:#000;border-top:1px solid rgba(255,255,255,0.06);padding:60px 24px 32px}
+        .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+        .ft-brand p{color:#86868b;font-size:0.88rem;line-height:1.7;max-width:280px;margin-top:12px}
+        .ft-col h4{color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:16px}
+        .ft-col a{display:block;color:#86868b;font-size:0.85rem;margin-bottom:10px;transition:color 0.2s;cursor:pointer}
+        .ft-col a:hover{color:#0071e3}
+        .ft-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:#86868b;font-size:0.78rem}
+
+        /* Reveal */
+        .rv{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+        .rv.vis{opacity:1;transform:translateY(0)}
+        .rv-1{transition-delay:0.1s}.rv-2{transition-delay:0.2s}.rv-3{transition-delay:0.3s}
+        .rv-4{transition-delay:0.35s}.rv-5{transition-delay:0.4s}.rv-6{transition-delay:0.45s}
+
+        /* Responsive */
+        @media(max-width:960px){
+            .nav-links{display:none}.hamburger{display:flex}
+            .s-grid{grid-template-columns:1fr 1fr}
+            .trust-grid{grid-template-columns:1fr 1fr;gap:28px}
+            .f-row,.f-row.rev{grid-template-columns:1fr;gap:40px;direction:ltr}
+            .contact-grid{grid-template-columns:1fr;gap:40px}
+            .ft-inner{grid-template-columns:1fr 1fr;gap:32px}
+            .cursor-glow{display:none}
+        }
+        @media(max-width:640px){
+            .s-grid{grid-template-columns:1fr}
+            .f-row-2{grid-template-columns:1fr}
+            .hero h1{letter-spacing:-1.5px}
+            .ft-inner{grid-template-columns:1fr;gap:28px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cursor glow -->
+<div class="cursor-glow hidden" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav-wrap" id="mainNav">
+    <div class="nav-inner">
+        <span class="nav-logo" onclick="go('home')">Hurtz<b>Donut</b></span>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="event.preventDefault();go('home')" class="active" data-p="home">Home</a></li>
+            <li><a href="#videography" onclick="event.preventDefault();go('videography')" data-p="videography">Videography</a></li>
+            <li><a href="#webdesign" onclick="event.preventDefault();go('webdesign')" data-p="webdesign">Web Design</a></li>
+            <li><a href="#social" onclick="event.preventDefault();go('social')" data-p="social">Social Media</a></li>
+            <li><a href="#seo" onclick="event.preventDefault();go('seo')" data-p="seo">SEO & Inventory</a></li>
+            <li><a href="#ads" onclick="event.preventDefault();go('ads')" data-p="ads">Ad Management</a></li>
+            <li><a href="#contact" onclick="event.preventDefault();goContact()" class="nav-cta">Get Started</a></li>
+        </ul>
+        <button class="hamburger" id="ham" onclick="toggleMob()" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+<div class="mobile-nav" id="mobNav" role="navigation" aria-label="Mobile menu">
+    <a href="#home" onclick="event.preventDefault();go('home');closeMob()">Home</a>
+    <a href="#videography" onclick="event.preventDefault();go('videography');closeMob()">Videography</a>
+    <a href="#webdesign" onclick="event.preventDefault();go('webdesign');closeMob()">Web Design</a>
+    <a href="#social" onclick="event.preventDefault();go('social');closeMob()">Social Media</a>
+    <a href="#seo" onclick="event.preventDefault();go('seo');closeMob()">SEO & Inventory</a>
+    <a href="#ads" onclick="event.preventDefault();go('ads');closeMob()">Ad Management</a>
+    <a href="#contact" onclick="event.preventDefault();goContact();closeMob()" style="color:#0071e3">Get Started</a>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+    <section class="hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="auto" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+        </div>
+        <div class="grid-overlay"></div>
+        <div class="particles" id="particles"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge rv"><span class="pulse"></span> Now Accepting New Clients</div>
+            <h1 class="rv rv-1">Hurtz<b>Donut</b></h1>
+            <p class="hero-tag rv rv-2">Made You Look Marketing</p>
+            <p class="hero-sub rv rv-3">We engineer digital presence that commands attention. From the first pixel to the final click, every touchpoint is designed to convert.</p>
+            <div class="hero-btns rv rv-4">
+                <a onclick="goContact()" class="btn-p">Start Your Project</a>
+                <a onclick="go('videography')" class="btn-g">See Our Work</a>
+            </div>
+        </div>
+        <div class="scroll-hint"><div class="scroll-mouse"></div>Scroll</div>
+    </section>
+
+    <section class="sec sec-dark">
+        <div class="container">
+            <p class="label rv">What We Do</p>
+            <h2 class="sec-title rv rv-1">Every angle of your<br>digital presence. Covered.</h2>
+            <p class="sec-desc rv rv-2">Six core services. One unified strategy. No gaps in your digital footprint.</p>
+            <div class="s-grid">
+                <div class="s-card rv rv-1" onclick="go('videography')"><div class="c-icon">🎬</div><h3 class="c-title">Professional Videography</h3><p class="c-text">Cinematic content that tells your brand story. From concept to final cut, videos that stop the scroll.</p><span class="c-link">Learn more →</span></div>
+                <div class="s-card rv rv-2" onclick="go('webdesign')"><div class="c-icon">💻</div><h3 class="c-title">Website Design</h3><p class="c-text">High-performance websites built to convert. Clean, fast, and designed with intention.</p><span class="c-link">Learn more →</span></div>
+                <div class="s-card rv rv-3" onclick="go('social')"><div class="c-icon">📱</div><h3 class="c-title">Social Media Management</h3><p class="c-text">Strategic content calendars, community engagement, and growth campaigns across every platform.</p><span class="c-link">Learn more →</span></div>
+                <div class="s-card rv rv-4" onclick="go('seo')"><div class="c-icon">🔍</div><h3 class="c-title">SEO & Inventory</h3><p class="c-text">Dominate search rankings while keeping your product catalog synchronized across channels.</p><span class="c-link">Learn more →</span></div>
+                <div class="s-card rv rv-5" onclick="go('ads')"><div class="c-icon">📊</div><h3 class="c-title">Ad Space Management</h3><p class="c-text">Strategic ad placement across Google, Meta, TikTok, and beyond. Every vector covered.</p><span class="c-link">Learn more →</span></div>
+                <div class="s-card rv rv-6" onclick="goContact()" style="background:linear-gradient(135deg,rgba(0,113,227,0.1),rgba(0,113,227,0.03));border-color:rgba(0,113,227,0.2)"><div class="c-icon" style="background:rgba(0,113,227,0.25)">🚀</div><h3 class="c-title">Full-Service Package</h3><p class="c-text">All six services as one cohesive strategy. Maximum impact. Zero gaps.</p><span class="c-link">Get started →</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-sec">
+        <div class="container" style="text-align:center">
+            <p class="label rv">Why Hurtz Donut</p>
+            <h2 class="sec-title rv rv-1" style="color:#1d1d1f;max-width:600px;margin:0 auto 48px">Results that speak louder<br>than promises.</h2>
+            <div class="trust-grid">
+                <div class="rv rv-1"><div class="t-num" data-c="150" data-s="+">0</div><div class="t-label">Clients Served</div></div>
+                <div class="rv rv-2"><div class="t-num" data-c="98" data-s="%">0</div><div class="t-label">Client Retention</div></div>
+                <div class="rv rv-3"><div class="t-num" data-c="3" data-s="x">0</div><div class="t-label">Avg. ROI Multiplier</div></div>
+                <div class="rv rv-4"><div class="t-num" data-c="24" data-s="/7">0</div><div class="t-label">Hour Support</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta"><div class="cta-inner rv"><h2>Ready to make them look?</h2><p>Let's build something that demands attention and delivers results.</p><a onclick="goContact()" class="btn-p">Start a Conversation</a></div></section>
+
+    <section class="contact-sec" id="contact">
+        <div class="contact-grid">
+            <div class="contact-info rv">
+                <p class="label">Get in Touch</p>
+                <h2>Let's talk about your project.</h2>
+                <p>Whether you need a full digital overhaul or a single focused service, we'll build a strategy that fits.</p>
+                <a href="mailto:hello@hurtzdonut.com" class="c-detail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> hello@hurtzdonut.com</a>
+                <a href="tel:+12085550142" class="c-detail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.14.94.38 1.85.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.96.32 1.87.56 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (208) 555-0142</a>
+            </div>
+            <form class="c-form rv rv-2" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="f-row-2"><div class="fg"><label for="fname">First Name</label><input id="fname" name="first_name" type="text" placeholder="Jane" required></div><div class="fg"><label for="lname">Last Name</label><input id="lname" name="last_name" type="text" placeholder="Doe" required></div></div>
+                <div class="fg"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="jane@company.com" required></div>
+                <div class="fg"><label for="service">Service Interested In</label><select id="service" name="service" required><option value="">Select a service...</option><option>Professional Videography</option><option>Website Design</option><option>Social Media Management</option><option>SEO & Inventory Management</option><option>Ad Space Management</option><option>Full-Service Package</option></select></div>
+                <div class="fg"><label for="message">Tell us about your project</label><textarea id="message" name="message" placeholder="What are your goals?"></textarea></div>
+                <button class="sub-btn" type="submit">Send Message</button>
+                <p id="formMsg" style="text-align:center;font-weight:500;margin-top:8px;display:none"></p>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== VIDEOGRAPHY ==================== -->
+<div class="page" id="page-videography">
+    <section class="inner-hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="none" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_24fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container"><div class="blob blob-vid-1"></div><div class="blob blob-vid-2"></div><div class="blob blob-vid-3"></div></div>
+        <div class="grid-overlay"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="inner-hero-content"><p class="label rv" style="color:#64acff">Videography</p><h1 class="rv rv-1">Stories that move.<br>Literally.</h1><p class="rv rv-2">From brand films to social reels, we produce cinematic content engineered to capture attention and drive action.</p></div>
+    </section>
+    <section class="sec sec-dark"><div class="f-row"><div class="f-text rv"><p class="label">What We Shoot</p><h2>Every format. Every platform. One vision.</h2><p>We handle concept development, scripting, on-location shooting, aerial drone footage, motion graphics, color grading, and final delivery.</p><ul class="ck-list"><li><span class="ck">✓</span> Brand story films & commercials</li><li><span class="ck">✓</span> Product demos & explainers</li><li><span class="ck">✓</span> Social media reels & shorts</li><li><span class="ck">✓</span> Drone & aerial cinematography</li><li><span class="ck">✓</span> Event coverage & testimonials</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-vid-1" style="width:300px;height:300px"></div><div class="blob blob-vid-2" style="width:250px;height:250px"></div></div><span class="f-vis-icon">🎥</span></div></div></section>
+    <section class="sec sec-light"><div class="f-row rev"><div class="f-text rv"><p class="label">Our Process</p><h2>From concept to final cut in weeks, not months.</h2><p>Every project starts with a creative brief, moves through pre-production planning, and lands on a delivery timeline you can count on.</p></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-vid-1" style="width:250px;height:250px;background:rgba(227,0,113,0.08)"></div><div class="blob blob-vid-3" style="width:200px;height:200px;background:rgba(255,100,50,0.06)"></div></div><span class="f-vis-icon">✂️</span></div></div></section>
+    <section class="cta"><div class="cta-inner rv"><h2>Ready to roll camera?</h2><p>Tell us about your project and we'll put together a custom production plan.</p><a onclick="go('home');setTimeout(goContact,300)" class="btn-p">Get a Quote</a></div></section>
+</div>
+
+<!-- ==================== WEB DESIGN ==================== -->
+<div class="page" id="page-webdesign">
+    <section class="inner-hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="none" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/5483077/5483077-hd_1920_1080_25fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container"><div class="blob blob-web-1"></div><div class="blob blob-web-2"></div><div class="blob blob-web-3"></div></div>
+        <div class="grid-overlay"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="inner-hero-content"><p class="label rv" style="color:#64acff">Website Design</p><h1 class="rv rv-1">Websites that work<br>as hard as you do.</h1><p class="rv rv-2">Conversion-focused websites built with clean code, sharp design, and relentless attention to detail.</p></div>
+    </section>
+    <section class="sec sec-dark"><div class="f-row"><div class="f-text rv"><p class="label">Design & Build</p><h2>Not just pretty. Profitable.</h2><p>Every site we build is designed to convert visitors into leads. We handle everything from wireframes to launch.</p><ul class="ck-list"><li><span class="ck">✓</span> Custom WordPress & HTML builds</li><li><span class="ck">✓</span> Mobile-first responsive design</li><li><span class="ck">✓</span> Speed optimized (sub-3s loads)</li><li><span class="ck">✓</span> SEO baked into every page</li><li><span class="ck">✓</span> Lead capture & CRM integration</li><li><span class="ck">✓</span> E-commerce & product catalogs</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-web-1" style="width:300px;height:300px"></div><div class="blob blob-web-2" style="width:250px;height:250px"></div></div><span class="f-vis-icon">🖥️</span></div></div></section>
+    <section class="sec sec-dark"><div class="container"><p class="label rv">How It Works</p><h2 class="sec-title rv rv-1">Four steps to launch.</h2><div class="process-steps"><div class="p-step rv"><div class="p-num">01</div><div><h3>Discovery & Strategy</h3><p>We learn your business, audience, and goals. Then build a site map aligned with revenue targets.</p></div></div><div class="p-step rv rv-1"><div class="p-num">02</div><div><h3>Design & Prototype</h3><p>High-fidelity mockups you can click through before a single line of code is written.</p></div></div><div class="p-step rv rv-2"><div class="p-num">03</div><div><h3>Development & QA</h3><p>Clean code. Tested across devices and browsers. Optimized from day one.</p></div></div><div class="p-step rv rv-3"><div class="p-num">04</div><div><h3>Launch & Support</h3><p>Deployment, DNS, SSL, monitoring, and ongoing maintenance.</p></div></div></div></div></section>
+    <section class="cta"><div class="cta-inner rv"><h2>Need a site that converts?</h2><p>Get a proposal within 48 hours.</p><a onclick="go('home');setTimeout(goContact,300)" class="btn-p">Request a Proposal</a></div></section>
+</div>
+
+<!-- ==================== SOCIAL MEDIA ==================== -->
+<div class="page" id="page-social">
+    <section class="inner-hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="none" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/8347638/8347638-hd_1920_1080_25fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container"><div class="blob blob-soc-1"></div><div class="blob blob-soc-2"></div><div class="blob blob-soc-3"></div></div>
+        <div class="grid-overlay"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="inner-hero-content"><p class="label rv" style="color:#64acff">Social Media Management</p><h1 class="rv rv-1">Your brand's voice.<br>Amplified.</h1><p class="rv rv-2">Strategic content, consistent posting, and community engagement that turns followers into customers.</p></div>
+    </section>
+    <section class="sec sec-dark"><div class="f-row"><div class="f-text rv"><p class="label">Full Management</p><h2>We handle everything so you can focus on your business.</h2><p>Content strategy, creation, scheduling, community management, and monthly reporting — we become your social media department.</p><ul class="ck-list"><li><span class="ck">✓</span> Content strategy & calendar planning</li><li><span class="ck">✓</span> Graphic design & copywriting</li><li><span class="ck">✓</span> Daily posting & scheduling</li><li><span class="ck">✓</span> Community & DM management</li><li><span class="ck">✓</span> All major platforms covered</li><li><span class="ck">✓</span> Monthly analytics reports</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-soc-1" style="width:300px;height:300px"></div><div class="blob blob-soc-2" style="width:250px;height:250px"></div></div><span class="f-vis-icon">📲</span></div></div></section>
+    <section class="sec sec-light"><div class="f-row rev"><div class="f-text rv"><p class="label">Growth Engine</p><h2>Strategic growth, not vanity metrics.</h2><p>We build engaged audiences that convert. Every piece of content serves your business goals.</p></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-soc-1" style="width:250px;height:250px;background:rgba(131,58,180,0.06)"></div><div class="blob blob-soc-3" style="width:200px;height:200px;background:rgba(252,176,69,0.06)"></div></div><span class="f-vis-icon">📈</span></div></div></section>
+    <section class="cta"><div class="cta-inner rv"><h2>Let's grow your audience.</h2><p>Get a custom social media strategy built around your brand.</p><a onclick="go('home');setTimeout(goContact,300)" class="btn-p">Get Your Strategy</a></div></section>
+</div>
+
+<!-- ==================== SEO & INVENTORY ==================== -->
+<div class="page" id="page-seo">
+    <section class="inner-hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="none" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/7579961/7579961-hd_1920_1080_25fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container"><div class="blob blob-seo-1"></div><div class="blob blob-seo-2"></div><div class="blob blob-seo-3"></div></div>
+        <div class="grid-overlay"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="inner-hero-content"><p class="label rv" style="color:#64acff">SEO & Inventory Management</p><h1 class="rv rv-1">Get found. Stay<br>organized.</h1><p class="rv rv-2">Dominate search rankings and keep your product catalog synchronized across every channel.</p></div>
+    </section>
+    <section class="sec sec-dark"><div class="f-row"><div class="f-text rv"><p class="label">SEO</p><h2>Page one isn't a goal. It's the baseline.</h2><p>Technical audits, keyword strategy, content optimization, link building, and local SEO.</p><ul class="ck-list"><li><span class="ck">✓</span> Technical SEO audits & fixes</li><li><span class="ck">✓</span> Keyword research & content strategy</li><li><span class="ck">✓</span> On-page & off-page optimization</li><li><span class="ck">✓</span> Local SEO & Google Business Profile</li><li><span class="ck">✓</span> Monthly ranking reports</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-seo-1" style="width:300px;height:300px"></div><div class="blob blob-seo-2" style="width:250px;height:250px"></div></div><span class="f-vis-icon">🔍</span></div></div></section>
+    <section class="sec sec-light"><div class="f-row rev"><div class="f-text rv"><p class="label">Inventory</p><h2>Your catalog. Organized, optimized, synchronized.</h2><p>Multi-channel inventory systems that keep stock accurate and listings optimized.</p><ul class="ck-list"><li><span class="ck">✓</span> Multi-channel inventory sync</li><li><span class="ck">✓</span> Product listing optimization</li><li><span class="ck">✓</span> SKU management & cleanup</li><li><span class="ck">✓</span> Automated stock alerts</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-seo-1" style="width:250px;height:250px;background:rgba(0,113,227,0.08)"></div><div class="blob blob-seo-2" style="width:200px;height:200px;background:rgba(48,209,88,0.06)"></div></div><span class="f-vis-icon">📦</span></div></div></section>
+    <section class="cta"><div class="cta-inner rv"><h2>Ready to rank higher?</h2><p>Get a free SEO audit and see where the opportunities are.</p><a onclick="go('home');setTimeout(goContact,300)" class="btn-p">Free SEO Audit</a></div></section>
+</div>
+
+<!-- ==================== AD MANAGEMENT ==================== -->
+<div class="page" id="page-ads">
+    <section class="inner-hero" data-water="true">
+        <div class="video-bg">
+            <div class="video-bg-fallback"></div>
+            <video autoplay muted loop playsinline preload="none" crossorigin="anonymous"
+                   data-src="https://videos.pexels.com/video-files/3255275/3255275-hd_1920_1080_25fps.mp4">
+            </video>
+        </div>
+        <div class="blob-container"><div class="blob blob-ad-1"></div><div class="blob blob-ad-2"></div><div class="blob blob-ad-3"></div></div>
+        <div class="grid-overlay"></div>
+        <canvas class="water-canvas"></canvas>
+        <div class="dark-overlay"></div>
+        <div class="inner-hero-content"><p class="label rv" style="color:#64acff">Ad Space Management</p><h1 class="rv rv-1">Every dollar tracked.<br>Every click counted.</h1><p class="rv rv-2">Paid advertising across every vector — Google, Meta, TikTok, YouTube, programmatic, and beyond.</p></div>
+    </section>
+    <section class="sec sec-dark"><div class="f-row"><div class="f-text rv"><p class="label">Paid Media</p><h2>Strategic ad placement. Measurable results.</h2><p>Budget allocation, audience targeting, creative testing, bid management, and continuous optimization.</p><ul class="ck-list"><li><span class="ck">✓</span> Google Ads (Search, Display, Shopping)</li><li><span class="ck">✓</span> Meta Ads (Facebook & Instagram)</li><li><span class="ck">✓</span> TikTok & YouTube advertising</li><li><span class="ck">✓</span> LinkedIn B2B campaigns</li><li><span class="ck">✓</span> Programmatic & native ads</li><li><span class="ck">✓</span> Retargeting & conversion tracking</li></ul></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-ad-1" style="width:300px;height:300px"></div><div class="blob blob-ad-2" style="width:250px;height:250px"></div></div><span class="f-vis-icon">📊</span></div></div></section>
+    <section class="sec sec-light"><div class="f-row rev"><div class="f-text rv"><p class="label">Transparency</p><h2>Your money. Your data. Full visibility.</h2><p>Real-time dashboards, weekly check-ins, and monthly reports showing exactly what's working.</p></div><div class="f-vis rv rv-2"><div class="blob-container"><div class="blob blob-ad-1" style="width:250px;height:250px;background:rgba(255,55,95,0.06)"></div><div class="blob blob-ad-3" style="width:200px;height:200px;background:rgba(255,159,10,0.06)"></div></div><span class="f-vis-icon">👁️</span></div></div></section>
+    <section class="cta"><div class="cta-inner rv"><h2>Make your ad budget work harder.</h2><p>Get a free ad account audit.</p><a onclick="go('home');setTimeout(goContact,300)" class="btn-p">Free Ad Audit</a></div></section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="ft-inner">
+        <div class="ft-brand"><span class="nav-logo">Hurtz<b>Donut</b></span><p>Made You Look Marketing. Full-service digital agency built for businesses ready to dominate.</p></div>
+        <div class="ft-col"><h4>Services</h4><a onclick="go('videography')">Videography</a><a onclick="go('webdesign')">Website Design</a><a onclick="go('social')">Social Media</a><a onclick="go('seo')">SEO & Inventory</a><a onclick="go('ads')">Ad Management</a></div>
+        <div class="ft-col"><h4>Company</h4><a href="#about">About</a><a href="#case-studies">Case Studies</a><a href="#blog">Blog</a><a href="#careers">Careers</a></div>
+        <div class="ft-col"><h4>Connect</h4><a href="mailto:hello@hurtzdonut.com">hello@hurtzdonut.com</a><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    </div>
+    <div class="ft-bottom">&copy; 2026 Hurtz Donut Marketing. All rights reserved. Made You Look.</div>
+</footer>
+
+<!-- ===== WebGL Water Ripple Shaders ===== -->
+<script id="water-vertex" type="x-shader/x-vertex">
+    attribute vec2 a_position;
+    void main(){
+        gl_Position=vec4(a_position,0.0,1.0);
+    }
+</script>
+<script id="water-update" type="x-shader/x-fragment">
+    precision highp float;
+    uniform sampler2D u_water;
+    uniform vec2 u_resolution;
+    uniform vec2 u_dropPos;
+    uniform float u_dropRadius;
+    uniform float u_dropStrength;
+    uniform float u_damping;
+    void main(){
+        vec2 uv=gl_FragCoord.xy/u_resolution;
+        vec2 texel=1.0/u_resolution;
+        // Sample neighbors for wave equation
+        float center=texture2D(u_water,uv).r;
+        float velocity=texture2D(u_water,uv).g;
+        float left=texture2D(u_water,uv-vec2(texel.x,0.0)).r;
+        float right=texture2D(u_water,uv+vec2(texel.x,0.0)).r;
+        float top=texture2D(u_water,uv+vec2(0.0,texel.y)).r;
+        float bottom=texture2D(u_water,uv-vec2(0.0,texel.y)).r;
+        // Wave propagation (2D wave equation)
+        float laplacian=left+right+top+bottom-4.0*center;
+        velocity+=laplacian*0.25;
+        velocity*=u_damping;
+        float height=center+velocity;
+        // Drop interaction
+        if(u_dropPos.x>0.0){
+            float dist=distance(gl_FragCoord.xy,u_dropPos);
+            if(dist<u_dropRadius){
+                float falloff=1.0-dist/u_dropRadius;
+                falloff=falloff*falloff; // Quadratic falloff for smoother drop
+                height+=u_dropStrength*falloff;
+            }
+        }
+        gl_FragColor=vec4(height,velocity,0.0,1.0);
+    }
+</script>
+<script id="water-render" type="x-shader/x-fragment">
+    precision highp float;
+    uniform sampler2D u_water;
+    uniform vec2 u_resolution;
+    uniform vec3 u_color1;
+    uniform vec3 u_color2;
+    uniform float u_time;
+    void main(){
+        vec2 uv=gl_FragCoord.xy/u_resolution;
+        vec2 texel=1.0/u_resolution;
+        float height=texture2D(u_water,uv).r;
+        // Calculate normals from height for lighting
+        float dx=texture2D(u_water,uv+vec2(texel.x,0.0)).r-texture2D(u_water,uv-vec2(texel.x,0.0)).r;
+        float dy=texture2D(u_water,uv+vec2(0.0,texel.y)).r-texture2D(u_water,uv-vec2(0.0,texel.y)).r;
+        vec3 normal=normalize(vec3(-dx*8.0,-dy*8.0,1.0));
+        // Light direction (slightly animated)
+        vec3 lightDir=normalize(vec3(sin(u_time*0.3)*0.3,cos(u_time*0.2)*0.3,1.0));
+        // Fresnel-like effect
+        float fresnel=pow(1.0-max(dot(normal,vec3(0.0,0.0,1.0)),0.0),3.0);
+        // Specular highlight (Blinn-Phong)
+        vec3 viewDir=vec3(0.0,0.0,1.0);
+        vec3 halfDir=normalize(lightDir+viewDir);
+        float spec=pow(max(dot(normal,halfDir),0.0),64.0);
+        // Caustic-like patterns from refraction
+        vec2 refracted=uv+normal.xy*0.03;
+        float caustic=texture2D(u_water,refracted).r;
+        // Mix colors based on height + fresnel
+        vec3 baseColor=mix(u_color1,u_color2,fresnel*0.6+height*2.0);
+        // Add specular highlights and caustics
+        vec3 finalColor=baseColor+vec3(spec*0.5)+vec3(caustic*0.1)*u_color2;
+        // Alpha based on wave activity
+        float alpha=abs(height)*6.0+abs(dx)*3.0+abs(dy)*3.0+spec*0.4+fresnel*0.08;
+        alpha=clamp(alpha,0.0,0.45);
+        gl_FragColor=vec4(finalColor,alpha);
+    }
+</script>
+
+<script>
+// ===== WebGL WATER RIPPLE SYSTEM =====
+(function(){
+    var waterInstances=[];
+    var mouseX=0,mouseY=0,lastMX=0,lastMY=0;
+    var touchActive=false;
+
+    function createWaterEffect(canvas,section){
+        var gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false});
+        if(!gl)return null;
+
+        // Determine page color scheme
+        var page=section.closest('.page');
+        var pageId=page?page.id:'';
+        var colors={
+            'page-home':[[0.0,0.35,0.8],[0.2,0.55,1.0]],
+            'page-videography':[[0.7,0.0,0.35],[0.0,0.35,0.8]],
+            'page-webdesign':[[0.0,0.65,0.5],[0.0,0.35,0.8]],
+            'page-social':[[0.45,0.2,0.65],[0.85,0.1,0.1]],
+            'page-seo':[[0.0,0.35,0.8],[0.15,0.7,0.3]],
+            'page-ads':[[0.85,0.2,0.3],[0.0,0.35,0.8]]
+        };
+        var c=colors[pageId]||colors['page-home'];
+
+        function compileShader(type,src){
+            var s=gl.createShader(type);
+            gl.shaderSource(s,src);gl.compileShader(s);
+            if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s));return null;}
+            return s;
+        }
+        function createProgram(vsSrc,fsSrc){
+            var vs=compileShader(gl.VERTEX_SHADER,vsSrc);
+            var fs=compileShader(gl.FRAGMENT_SHADER,fsSrc);
+            if(!vs||!fs)return null;
+            var p=gl.createProgram();gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);
+            if(!gl.getProgramParameter(p,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(p));return null;}
+            return p;
+        }
+
+        var vsSrc=document.getElementById('water-vertex').textContent;
+        var updateSrc=document.getElementById('water-update').textContent;
+        var renderSrc=document.getElementById('water-render').textContent;
+
+        var updateProg=createProgram(vsSrc,updateSrc);
+        var renderProg=createProgram(vsSrc,renderSrc);
+        if(!updateProg||!renderProg)return null;
+
+        // Quad
+        var buf=gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+        gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+
+        // Simulation textures (ping-pong)
+        var simW=256,simH=256;
+        function createFBO(){
+            var tex=gl.createTexture();
+            gl.bindTexture(gl.TEXTURE_2D,tex);
+            gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,simW,simH,0,gl.RGBA,gl.UNSIGNED_BYTE,null);
+            gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+            var fb=gl.createFramebuffer();
+            gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+            return{tex:tex,fb:fb};
+        }
+        var fbo0=createFBO(),fbo1=createFBO();
+        var current=0;
+
+        // Get uniforms
+        var uLocs={};
+        function getU(prog,name){return gl.getUniformLocation(prog,name);}
+
+        var dropQueue=[];
+        var startTime=performance.now()/1000;
+
+        function resize(){
+            var rect=section.getBoundingClientRect();
+            canvas.width=Math.min(rect.width,1920);
+            canvas.height=Math.min(rect.height,1080);
+        }
+        resize();
+
+        function render(){
+            var rect=section.getBoundingClientRect();
+            // Skip if not visible
+            if(rect.bottom<0||rect.top>window.innerHeight)return;
+
+            var src=current===0?fbo0:fbo1;
+            var dst=current===0?fbo1:fbo0;
+
+            // Update pass
+            gl.bindFramebuffer(gl.FRAMEBUFFER,dst.fb);
+            gl.viewport(0,0,simW,simH);
+            gl.useProgram(updateProg);
+
+            var posAttr=gl.getAttribLocation(updateProg,'a_position');
+            gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+            gl.enableVertexAttribArray(posAttr);
+            gl.vertexAttribPointer(posAttr,2,gl.FLOAT,false,0,0);
+
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D,src.tex);
+            gl.uniform1i(getU(updateProg,'u_water'),0);
+            gl.uniform2f(getU(updateProg,'u_resolution'),simW,simH);
+            gl.uniform1f(getU(updateProg,'u_damping'),0.985);
+
+            // Process drop
+            var drop=dropQueue.shift();
+            if(drop){
+                gl.uniform2f(getU(updateProg,'u_dropPos'),drop.x*simW,drop.y*simH);
+                gl.uniform1f(getU(updateProg,'u_dropRadius'),drop.radius||12.0);
+                gl.uniform1f(getU(updateProg,'u_dropStrength'),drop.strength||0.15);
+            }else{
+                gl.uniform2f(getU(updateProg,'u_dropPos'),-1.0,-1.0);
+                gl.uniform1f(getU(updateProg,'u_dropRadius'),0.0);
+                gl.uniform1f(getU(updateProg,'u_dropStrength'),0.0);
+            }
+
+            gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+            current=1-current;
+
+            // Render pass
+            gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+            gl.viewport(0,0,canvas.width,canvas.height);
+            gl.useProgram(renderProg);
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+
+            posAttr=gl.getAttribLocation(renderProg,'a_position');
+            gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+            gl.enableVertexAttribArray(posAttr);
+            gl.vertexAttribPointer(posAttr,2,gl.FLOAT,false,0,0);
+
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D,dst.tex);
+            gl.uniform1i(getU(renderProg,'u_water'),0);
+            gl.uniform2f(getU(renderProg,'u_resolution'),canvas.width,canvas.height);
+            gl.uniform3f(getU(renderProg,'u_color1'),c[0][0],c[0][1],c[0][2]);
+            gl.uniform3f(getU(renderProg,'u_color2'),c[1][0],c[1][1],c[1][2]);
+            gl.uniform1f(getU(renderProg,'u_time'),(performance.now()/1000)-startTime);
+
+            gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+            gl.disable(gl.BLEND);
+        }
+
+        return{
+            render:render,
+            resize:resize,
+            section:section,
+            addDrop:function(nx,ny,radius,strength){
+                dropQueue.push({x:nx,y:1.0-ny,radius:radius||12.0,strength:strength||0.15});
+            }
+        };
+    }
+
+    // Init all water canvases
+    document.querySelectorAll('[data-water]').forEach(function(section){
+        var canvas=section.querySelector('.water-canvas');
+        if(canvas){
+            var inst=createWaterEffect(canvas,section);
+            if(inst)waterInstances.push(inst);
+        }
+    });
+
+    // Mouse tracking
+    document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY;});
+    document.addEventListener('touchmove',function(e){
+        if(e.touches.length){mouseX=e.touches[0].clientX;mouseY=e.touches[0].clientY;touchActive=true;}
+    },{passive:true});
+    document.addEventListener('touchstart',function(e){
+        if(e.touches.length){mouseX=e.touches[0].clientX;mouseY=e.touches[0].clientY;touchActive=true;}
+    },{passive:true});
+    document.addEventListener('touchend',function(){touchActive=false;},{passive:true});
+
+    // Click creates big splash
+    document.addEventListener('click',function(e){
+        waterInstances.forEach(function(w){
+            var rect=w.section.getBoundingClientRect();
+            if(e.clientY>=rect.top&&e.clientY<=rect.bottom){
+                var nx=(e.clientX-rect.left)/rect.width;
+                var ny=(e.clientY-rect.top)/rect.height;
+                w.addDrop(nx,ny,20.0,0.35); // Big splash on click
+            }
+        });
+    });
+
+    // Main loop
+    var lastDrop=0;
+    function mainLoop(){
+        var now=performance.now();
+        // Add drops from mouse/touch movement
+        var dx=mouseX-lastMX,dy=mouseY-lastMY;
+        var speed=Math.sqrt(dx*dx+dy*dy);
+
+        if(speed>1&&now-lastDrop>30){ // Drop every 30ms while moving
+            waterInstances.forEach(function(w){
+                var rect=w.section.getBoundingClientRect();
+                if(mouseY>=rect.top&&mouseY<=rect.bottom){
+                    var nx=(mouseX-rect.left)/rect.width;
+                    var ny=(mouseY-rect.top)/rect.height;
+                    // Faster movement = bigger splash
+                    var str=Math.min(speed*0.003,0.2);
+                    var rad=Math.min(6+speed*0.1,18);
+                    w.addDrop(nx,ny,rad,str);
+                }
+            });
+            lastDrop=now;
+        }
+        lastMX=mouseX;lastMY=mouseY;
+
+        // Render all
+        waterInstances.forEach(function(w){w.render();});
+        requestAnimationFrame(mainLoop);
+    }
+    mainLoop();
+
+    // Resize handler
+    window.addEventListener('resize',function(){
+        waterInstances.forEach(function(w){w.resize();});
+    });
+})();
+
+// ===== PARTICLES =====
+(function(){
+    var c=document.getElementById('particles');if(!c)return;
+    for(var i=0;i<30;i++){
+        var d=document.createElement('div');d.className='dot';
+        var s=2+Math.random()*4;
+        d.style.cssText='width:'+s+'px;height:'+s+'px;left:'+Math.random()*100+'%;bottom:-10px;animation-duration:'+(10+Math.random()*15)+'s;animation-delay:'+(Math.random()*12)+'s;';
+        c.appendChild(d);
+    }
+})();
+
+// ===== CURSOR GLOW =====
+(function(){
+    var glow=document.getElementById('cursorGlow');
+    var gx=0,gy=0,cx=0,cy=0;
+    var isDesktop=window.matchMedia('(min-width:961px)').matches;
+    if(!isDesktop)return;
+    glow.classList.remove('hidden');
+    document.addEventListener('mousemove',function(e){gx=e.clientX;gy=e.clientY;});
+    (function tick(){
+        cx+=(gx-cx)*0.1;cy+=(gy-cy)*0.1;
+        glow.style.left=cx+'px';glow.style.top=cy+'px';
+        requestAnimationFrame(tick);
+    })();
+})();
+
+// ===== INTERACTIVE BLOB FOLLOW =====
+(function(){
+    var mx=window.innerWidth/2,my=window.innerHeight/2;
+    var tx=mx,ty=my;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
+    document.addEventListener('touchmove',function(e){if(e.touches.length){mx=e.touches[0].clientX;my=e.touches[0].clientY;}},{passive:true});
+    document.addEventListener('touchstart',function(e){if(e.touches.length){mx=e.touches[0].clientX;my=e.touches[0].clientY;}},{passive:true});
+
+    (function tick(){
+        tx+=(mx-tx)*0.06;
+        ty+=(my-ty)*0.06;
+        var active=document.querySelector('.page.active');
+        if(active){
+            var blobs=active.querySelectorAll('.hero .blob, .inner-hero .blob');
+            for(var i=0;i<blobs.length;i++){
+                var mult=0.08+i*0.03;
+                var dirX=i%2===0?1:-1;
+                var dirY=i%3===0?-1:1;
+                var ox=(tx-window.innerWidth/2)*mult*dirX;
+                var oy=(ty-window.innerHeight/2)*mult*dirY;
+                blobs[i].style.marginLeft=ox+'px';
+                blobs[i].style.marginTop=oy+'px';
+            }
+        }
+        requestAnimationFrame(tick);
+    })();
+})();
+
+// ===== LAZY VIDEO LOADING =====
+(function(){
+    // Load video only when its page becomes active
+    function loadPageVideos(pageEl){
+        if(!pageEl)return;
+        var vids=pageEl.querySelectorAll('video[data-src]');
+        vids.forEach(function(vid){
+            if(!vid.getAttribute('src')){
+                var src=vid.getAttribute('data-src');
+                vid.src=src;
+                vid.load();
+            }
+            vid.play().then(function(){
+                vid.classList.add('playing');
+            }).catch(function(){
+                // Autoplay may be blocked; still show if it can play
+                vid.addEventListener('canplay',function(){
+                    vid.classList.add('playing');
+                    vid.play().catch(function(){});
+                },{once:true});
+            });
+        });
+    }
+    // Load home page video immediately
+    loadPageVideos(document.getElementById('page-home'));
+
+    // Expose for nav
+    window._loadPageVideos=loadPageVideos;
+})();
+
+// ===== FORM HANDLER =====
+function handleSubmit(e){
+    e.preventDefault();
+    var form=document.getElementById('contactForm');
+    var msg=document.getElementById('formMsg');
+    // Basic validation
+    var email=form.querySelector('#email').value;
+    if(!email||!email.includes('@')){
+        msg.style.display='block';msg.style.color='#ff3b30';msg.textContent='Please enter a valid email address.';return;
+    }
+    // Show success (replace with your actual form handler, e.g. WordPress form plugin)
+    msg.style.display='block';msg.style.color='#30d158';msg.textContent='Thank you! We\'ll be in touch soon.';
+    form.reset();
+    setTimeout(function(){msg.style.display='none'},5000);
+}
+
+// ===== NAV =====
+function go(id){
+    var pages=document.querySelectorAll('.page');
+    for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
+    var p=document.getElementById('page-'+id);
+    if(p){
+        p.classList.add('active');
+        // Load and play videos for this page
+        if(window._loadPageVideos)window._loadPageVideos(p);
+    }
+    var links=document.querySelectorAll('.nav-links a[data-p]');
+    for(var j=0;j<links.length;j++)links[j].classList.toggle('active',links[j].getAttribute('data-p')===id);
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(initRv,150);setTimeout(initCounters,300);
+}
+function goContact(){
+    var a=document.querySelector('.page.active');
+    if(!a||a.id!=='page-home'){go('home');setTimeout(function(){var e=document.getElementById('contact');if(e)e.scrollIntoView({behavior:'smooth'})},350)}
+    else{var e=document.getElementById('contact');if(e)e.scrollIntoView({behavior:'smooth'})}
+}
+function toggleMob(){var h=document.getElementById('ham');h.classList.toggle('open');document.getElementById('mobNav').classList.toggle('open');h.setAttribute('aria-expanded',h.classList.contains('open'))}
+function closeMob(){var h=document.getElementById('ham');h.classList.remove('open');document.getElementById('mobNav').classList.remove('open');h.setAttribute('aria-expanded','false')}
+
+// ===== REVEAL =====
+var rvObs;
+function initRv(){
+    if(rvObs)rvObs.disconnect();
+    rvObs=new IntersectionObserver(function(entries){for(var i=0;i<entries.length;i++)if(entries[i].isIntersecting)entries[i].target.classList.add('vis')},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    var els=document.querySelectorAll('.rv');for(var i=0;i<els.length;i++){els[i].classList.remove('vis');rvObs.observe(els[i])}
+}
+initRv();
+
+// ===== COUNTERS =====
+function initCounters(){
+    var nums=document.querySelectorAll('.t-num[data-c]');
+    var obs=new IntersectionObserver(function(entries){
+        for(var i=0;i<entries.length;i++){
+            if(entries[i].isIntersecting){
+                (function(el){
+                    var t=parseInt(el.getAttribute('data-c')),s=el.getAttribute('data-s')||'',c=0,step=Math.max(1,Math.ceil(t/50));
+                    var timer=setInterval(function(){c+=step;if(c>=t){c=t;clearInterval(timer)}el.textContent=c+s},30);
+                })(entries[i].target);
+                obs.unobserve(entries[i].target);
+            }
+        }
+    },{threshold:0.5});
+    for(var i=0;i<nums.length;i++)obs.observe(nums[i]);
+}
+initCounters();
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll',function(){document.getElementById('mainNav').style.background=window.scrollY>60?'rgba(0,0,0,0.88)':'rgba(0,0,0,0.72)'});
+</script>
+</body>
+</html>
